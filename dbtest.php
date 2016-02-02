@@ -6,11 +6,11 @@
     include_once 'SearchMethods.php';
 
 
-    $results = locationSearch(1.316272824483, 103.87997271077, 5);
+    $results = locationSearch(1.316272824483, 103.87997271077, 50);
     
     while ($row = $results->fetchArray()) {
         echo '<p>';
-    	var_dump($row['name'], $row['lat'], $row['long']);
+    	var_dump($row['name'], $row['distance']);
     	echo '</p>';
     }
 
