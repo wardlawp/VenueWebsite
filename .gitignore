@@ -1,1 +1,14 @@
 Venue.db
+__pycache__/
+*.py[cod]
+*$py.class
+.metadata/
+*.log
+*.csv
+*.md~
+*.txt~
+*.db
+*.json
+.project
+.buildpath
+.settings/
