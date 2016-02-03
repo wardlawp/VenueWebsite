@@ -1,7 +1,7 @@
 '''
-@summary: Converts output of VenueCrawler.py to CSV
+@summary: Transfers Venue Data from json file to SQLITE database
 @author: Philip Wardlaw
-Created on Dec 30, 2015
+Created on Jan 28, 2016
 
 STAND ALONE SCRIPT
 '''
@@ -12,11 +12,6 @@ import sqlite3 as lite
 
 delim = '\t'
 
-
-def stripChars(aString):
-    return aString.replace('\t', ' ') \
-                  .replace('\n', ' ') \
-                  .replace('\r', ' ')
 
 if __name__ == '__main__':
 

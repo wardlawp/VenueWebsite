@@ -49,8 +49,7 @@ function stringSimilarity($db_phrase)
 	$max_similarity = 0;
 	
 	foreach($catagories as $cat){
-		$sim = similar_text($_SESSION['phrase'], $cat);
-		
+		$sim = similar_text(strtolower($_SESSION['phrase']) , strtolower($cat));
 		$max_similarity = $max_similarity > $sim ? $max_similarity : $sim;
 	}
 	
@@ -73,7 +72,6 @@ function textSearch($phrase, $limit = 100)
 	$statement->bindValue(':limit', $limit);
 	
 	return  $statement->execute();
-	
 }
 
 

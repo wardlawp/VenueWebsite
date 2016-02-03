@@ -21,7 +21,7 @@
    
 
 
-    $results = textSearch('Shoe Store', 5);
+    $results = textSearch('pizz', 5);
     
     while ($row = $results->fetchArray()) {
         echo '<p>';
