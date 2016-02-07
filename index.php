@@ -1,6 +1,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <title>Venue Site</title>
 <script type="text/javascript">
 
@@ -33,7 +34,8 @@
 			map.setCenter(marker.getPosition());
 			markers.forEach(function(marker){ marker.setAnimation();});
 			marker.setAnimation(google.maps.Animation.BOUNCE);
-			$(link).focus();
+			$('#LeftBar').animate({scrollTop: $(link).closest(".venue").offset().top - $('#LeftBar').offset().top + $('#LeftBar').scrollTop() - 50});
+			$(link.closest(".venue")).effect("highlight", {}, 3000);
 		});
 
 		$(this).click(function() {
@@ -55,8 +57,8 @@
 	    $("#form_lat").val(event.latLng.lat());
 	    $("#form_long").val( event.latLng.lng());
 	    $("#form_location").val("Clicked location");
-	    $("#search").submit();
-	    
+	    $(".FormBar").effect("highlight", {}, 1000);
+	    $("#form_location").effect("highlight", {}, 2000);
 	}); 
 
 
@@ -169,14 +171,15 @@
 	</div>
 </div>
 
-<div class="LeftBar"> 
+<div class="LeftBar" id="LeftBar" > 
 <?php 
 	if(isset($venues)){
 		while ($venue = $venues->fetchArray()){
 			echo '<div class ="venue">';
 			echo '<p>' .$venue['name'] . '</p>';
-			echo '<p>' .$venue['categories'] . '</p>';
-			echo '<a class="mapLink" value="'.$venue['lat'] . ',' . $venue['long'] .  ',' . $venue['name'] .  '"> See on Map </a>';
+			echo '<p>' . rtrim($venue['categories'], ',') . '</p>';
+			echo '<p>' .$venue['address'] . '</p>';
+			echo '<a class="mapLink" value="'.$venue['lat'] . ',' . $venue['long'] .  ',' . $venue['name'] .  '"><button type="button">Show</button> </a>';
 			echo '</div>';
 			
 		}

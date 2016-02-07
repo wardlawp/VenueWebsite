@@ -49,7 +49,7 @@ function locationKeywordSearch($lat, $long, $keyword, $distance,  $limit = 50)
 	$db->createFunction("DISTANCE", "haversineGreatCircleDistance");
 	$db->createFunction("SIMILARITY", "stringSimilarity");
 
-	$statement = $db->prepare('SELECT venueId, name, lat, long, categories, DISTANCE(lat, long) as distance, SIMILARITY(categories)' .
+	$statement = $db->prepare('SELECT venueId, name, lat, long, categories, address, DISTANCE(lat, long) as distance, SIMILARITY(categories)' .
 			" as similarity FROM Venues WHERE distance < :dist AND similarity >= :sim ORDER BY distance ASC LIMIT :limit");
 
 

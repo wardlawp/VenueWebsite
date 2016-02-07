@@ -25,7 +25,8 @@ if __name__ == '__main__':
 
     cur.execute('CREATE TABLE IF NOT EXISTS'
                 ' Venues(venueId TEXT UNIQUE,'
-                ' name TEXT, lat NUMBER, long NUM, categories TEXT, json TEXT);')
+                ' name TEXT, lat NUMBER, long NUM,'
+                ' address TEXT, categories TEXT, json TEXT);')
 
     print 'Reading JSON File'
     with codecs.open(sys.argv[1], 'r', encoding='UTF-8') as fp:
@@ -34,6 +35,7 @@ if __name__ == '__main__':
     print 'Writing to DB'
     for key in json:
         venue = json[key]
+
         
         categories = ''
         
@@ -44,10 +46,12 @@ if __name__ == '__main__':
                    venue['name'],
                    venue['location']['lat'],
                    venue['location']['lng'],
+                   ','.join(venue['location']['formattedAddress']),
                    categories,
                    J.dumps(venue))
 
-        cur.execute("INSERT INTO Venues VALUES(?, ?, ?, ?, ?, ?);", qryData)
+
+        cur.execute("INSERT INTO Venues VALUES(?, ?, ?, ?, ?, ?, ?);", qryData)
 
     con.commit()
     print 'Finished'
