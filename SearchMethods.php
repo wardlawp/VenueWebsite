@@ -38,7 +38,7 @@ function stringSimilarity($db_phrase)
 }
 
 
-function locationKeywordSearch($lat, $long, $keyword, $distance,  $limit = 50)
+function locationKeywordSearch($lat, $long, $keyword, $distance,  $limit = 25)
 {
 
 	$_SESSION['lat'] = $lat;
@@ -50,7 +50,7 @@ function locationKeywordSearch($lat, $long, $keyword, $distance,  $limit = 50)
 	$db->createFunction("SIMILARITY", "stringSimilarity");
 
 	$statement = $db->prepare('SELECT venueId, name, lat, long, categories, address, DISTANCE(lat, long) as distance, SIMILARITY(categories)' .
-			" as similarity FROM Venues WHERE distance < :dist AND similarity >= :sim ORDER BY distance ASC LIMIT :limit");
+			" as similarity FROM Venues WHERE distance < :dist ORDER BY similarity DESC LIMIT :limit");
 
 
 	$statement->bindValue(':limit', $limit);
