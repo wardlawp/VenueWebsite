@@ -24,22 +24,40 @@ function haversineGreatCircleDistance($lat, $long)
 	return $angle * $earthRadius;
 }
 
-function locationSearch($lat, $long, $distance, $limit = 100)
+function stringSimilarity($db_phrase)
 {
-	
+	$catagories = explode(',', $db_phrase);
+	$max_similarity = 0;
+
+	foreach($catagories as $cat){
+		$sim = similar_text(strtolower($_SESSION['phrase']) , strtolower($cat));
+		$max_similarity = $max_similarity > $sim ? $max_similarity : $sim;
+	}
+
+	return $max_similarity;
+}
+
+
+function locationKeywordSearch($lat, $long, $keyword, $distance,  $limit = 50)
+{
+
 	$_SESSION['lat'] = $lat;
 	$_SESSION['long'] = $long;
+	$_SESSION['phrase'] = $keyword;
 
 	$db = new SQLite3('Venue.db');
 	$db->createFunction("DISTANCE", "haversineGreatCircleDistance");
-	
-	$statement = $db->prepare('SELECT venueId, name, lat, long, categories, DISTANCE(lat, long)' .
-			" as distance FROM Venues WHERE distance < :dist ORDER BY distance ASC LIMIT :limit");
-		
-	
+	$db->createFunction("SIMILARITY", "stringSimilarity");
+
+	$statement = $db->prepare('SELECT venueId, name, lat, long, categories, DISTANCE(lat, long) as distance, SIMILARITY(categories)' .
+			" as similarity FROM Venues WHERE distance < :dist AND similarity >= :sim ORDER BY distance ASC LIMIT :limit");
+
+
 	$statement->bindValue(':limit', $limit);
 	$statement->bindValue(':dist', $distance, SQLITE3_INTEGER);
+	$statement->bindValue(':sim', strlen($keyword)* 0.8, SQLITE3_INTEGER); //TODO test
 	
+
 	return  $statement->execute();
 }
 
@@ -68,36 +86,5 @@ function getGoogleGeoCode($address)
 	return ['lat' => $lat, 'long' => $long];
 }
 
-
-function stringSimilarity($db_phrase)
-{
-	$catagories = explode(',', $db_phrase);
-	$max_similarity = 0;
-	
-	foreach($catagories as $cat){
-		$sim = similar_text(strtolower($_SESSION['phrase']) , strtolower($cat));
-		$max_similarity = $max_similarity > $sim ? $max_similarity : $sim;
-	}
-	
-	return $max_similarity;
-}
-
-function textSearch($phrase, $limit = 100)
-{
-	
-	$_SESSION['phrase'] = $phrase;
-	
-
-	$db = new SQLite3('Venue.db');
-	$db->createFunction("SIMILARITY", "stringSimilarity");
-	
-	$statement = $db->prepare('SELECT venueId, name, lat, long, categories, SIMILARITY(categories)' .
-			" as similarity FROM Venues ORDER BY similarity DESC LIMIT :limit");
-	
-	
-	$statement->bindValue(':limit', $limit);
-	
-	return  $statement->execute();
-}
 
 

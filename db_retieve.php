@@ -3,12 +3,18 @@
     
     $limit = 50;
     $venues = null;
-    
-    if(isset($_GET['category'])){
-    	$venues = textSearch($_GET['category'], $limit);
-    } else if (isset($_GET['location']) && isset($_GET['distance'])){
+
+    if(isset($_GET['keyword']) &&
+    		(isset($_GET['location']) || (!empty($_GET['lat']) && !empty($_GET['long']))) &&
+    		isset($_GET['distance'])){
     	
-		$location = getGoogleGeoCode($_GET['location']);
-    	$venues = locationSearch($location['lat'], $location['long'], $_GET['distance']);
-    	var_dump($venues);
+    			
+    	if(!empty($_GET['lat']) && !empty($_GET['long'])){
+    		$location = ['lat' => $_GET['lat'], 'long' => $_GET['long']];
+    	} else {
+    		$location = getGoogleGeoCode($_GET['location']);
+    	}
+		
+    	$venues = locationKeywordSearch($location['lat'], $location['long'], $_GET['keyword'], $_GET['distance']);
+
     }
