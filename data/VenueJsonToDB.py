@@ -19,10 +19,12 @@ if __name__ == '__main__':
         print 'Please provide the file name of the JSON Venue file.'
         exit(1)
 
+    
     print 'Creating database table'
     con = lite.connect('Venue.db')
     cur = con.cursor()
 
+    # Create the database table
     cur.execute('CREATE TABLE IF NOT EXISTS'
                 ' Venues(venueId TEXT UNIQUE,'
                 ' name TEXT, lat NUMBER, long NUM,'
@@ -42,6 +44,7 @@ if __name__ == '__main__':
         for cat in venue['categories']:
             categories += cat['name'] + ','
             
+        # Prepare the data to insert into the Venue database table
         qryData = (key,
                    venue['name'],
                    venue['location']['lat'],

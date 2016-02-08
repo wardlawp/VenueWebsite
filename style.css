@@ -1,3 +1,5 @@
+/* CSS Styles for Venue website */
+
 h1 {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 30px;
@@ -16,6 +18,15 @@ h2 {
     font-variant: normal;
     font-weight: 500;
     line-height: 15.4px;
+}
+
+p {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
 }
 
 .textbox { 
@@ -40,9 +51,6 @@ h2 {
     -moz-box-shadow: 0px 0px 8px #7bc1f7; 
     -webkit-box-shadow: 0px 0px 8px #7bc1f7; 
 } 
-
-
-
 
 .button {
     -moz-box-shadow:inset 0px 1px 0px 0px #bee2f9;
@@ -79,17 +87,6 @@ h2 {
     background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#468ccf', endColorstr='#63b8ee',GradientType=0);
     background-color:#468ccf;
-}
-
-
-
-p {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 400;
-    line-height: 20px;
 }
 
 .FormBar{
