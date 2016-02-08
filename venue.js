@@ -13,7 +13,6 @@ function initMap() {
 		zoom: 12
 	});
 
-
 	// Look at the map links and create markers for each of them
 	$("a.mapLink").each(function() {
 		var vals = $(this).attr('value').split(",");
@@ -53,10 +52,7 @@ function initMap() {
 			// Animare the marker (make it bounce)
 			markers.forEach(function(marker){ marker.setAnimation();});
 			marker.setAnimation(google.maps.Animation.BOUNCE);
-		});
-	
-		
-		  
+		});  
 	});
 	
 	var geocoder = new google.maps.Geocoder;	
@@ -80,7 +76,6 @@ function initMap() {
 	    $("#form_location").effect("highlight", {}, 2000);
 	}); 
 	
-	
 	// If markers are present center the map so that it shows all of them nicely
 	if( markers.length > 0){
 		var latlngbounds = new google.maps.LatLngBounds();
@@ -89,6 +84,4 @@ function initMap() {
 		}
 		map.fitBounds(latlngbounds);
 	}
-	
-  
 }
