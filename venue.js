@@ -7,9 +7,9 @@ var markers = [];
 // initMap() is called by google maps and used to set up the map correctly
 function initMap() {
 	
-	// Center the map on Singapore
+	// Center the map at home_lat home_long
 	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: 1.33, lng: 103.89}, 
+		center: {lat: $('meta[name=home_lat]').attr("content"), lng:  $('meta[name=home_long]').attr("content")}, 
 		zoom: 12
 	});
 

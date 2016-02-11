@@ -1,9 +1,16 @@
+<?php
+	include_once 'config.php';
+	include_once 'SearchMethods.php';
+?>
+
 <html>
 	<!-- This document is commented in detail as per customer's requirements -->
 	<head>
 		<!-- Includes (JQuery) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+		<meta name="home_lat" content="<?php echo $homeLat?>">
+		<meta name="home_long" content="<?php echo $homeLong ?>">
 		<!-- Includes (Our custom JS) -->
 		<script src="venue.js"></script>
 		<!-- Includes (Our custom CSS) -->
@@ -13,8 +20,6 @@
 	<body>
 		<!-- Process GET request, get venues from database -->
 		<?php
-			include_once 'config.php';
-			include_once 'SearchMethods.php';
 			$limit = 50;
 			$venues = null;
 			

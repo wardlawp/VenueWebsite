@@ -11,3 +11,8 @@
 	
 	// Home Country
 	$homeCountry = 'Singapore';
+	
+	// Home lat/long i.e. where the map will focus when the user 
+	// first visits the page, currently set to Singapore
+	$homeLat =  1.33;
+	$homeLong = 103.89;
