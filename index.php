@@ -96,6 +96,8 @@
 					echo '<a class="mapLink" value="'.$venue['lat'] . ',' . $venue['long'] .  ',' . $venue['name'] .  '"><button class="button"style="float:right;" type="button">Show</button> </a>';
 					echo '</div>';
 				}
+			} else {
+				echo '<p>Please enter a search phrase</p>';
 			}
 		?>
 		</div>

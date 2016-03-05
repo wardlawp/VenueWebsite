@@ -9,7 +9,7 @@ function initMap() {
 	
 	// Center the map at home_lat home_long
 	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: $('meta[name=home_lat]').attr("content"), lng:  $('meta[name=home_long]').attr("content")}, 
+		center: {lat: parseFloat($('meta[name=home_lat]').attr("content")), lng:  parseFloat($('meta[name=home_long]').attr("content"))}, 
 		zoom: 12
 	});
 
