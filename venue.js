@@ -20,9 +20,11 @@ function initMap() {
 		var lat =  parseFloat(vals[0]);
 		var lng =  parseFloat(vals[1]);
 		var name =  vals[2];
+		var number =  vals[3];
 		  
 		markers.push( new google.maps.Marker({
 			position: {"lat": lat, "lng": lng},
+			icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + number + '|FF0000|000000',
 			map: map,
 			title: name
 		}));
