@@ -3,7 +3,7 @@
 	
 	// Google API key can be optained from google developer console
 	// Giigke API key must have "Google maps javascript API" enabled
-	$googleAPIKey = "AIzaSyB-C_CEWwKx2C8THaIM4bByzx2yBaza_HM";
+	$googleAPIKey = "";
 	
 	// Name of database that will be used by website
 	// Database must exist in same folder as index.php
