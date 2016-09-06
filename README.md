@@ -1,5 +1,7 @@
 # VenueWebsite
 
+A classic style PHP website
+
 ## Installation
 
 -  Install XAMPP for windows
